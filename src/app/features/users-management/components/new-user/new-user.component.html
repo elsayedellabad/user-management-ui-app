@@ -1,0 +1,83 @@
+<div class="wrapper ml-5 mt-5">
+  <div class="title">
+    <h2>
+      <a (click)="back()">
+        <span class="material-icons"> keyboard_backspace </span>
+      </a>
+     {{'New User' | translate}}
+    </h2>
+  </div>
+  <div class="form-wrapper">
+    <form [class.disabled]="loadingDetails" [formGroup]="newUserForm">
+      <div class="row">
+        <div class="form-group col-sm-6 col-12">
+          <label for="name">{{'Name' | translate}}<span>*</span></label>
+          <input
+            type="text"
+            formControlName="name"
+            placeholder="{{'Name' | translate}}"
+            required
+          />
+        </div>
+        <div class="form-group col-sm-6 col-12">
+          <label for="price">{{'Email' | translate}} <span>*</span></label>
+          <input
+            type="email"
+            formControlName="email"
+            placeholder="{{'Email' | translate}}"
+            required
+          />
+        </div>
+      </div>
+       <div class="row">
+        <div class="form-group col-sm-6 col-12">
+          <label for="phone">{{'Phone' | translate}}<span>*</span></label>
+          <input
+            type="text"
+            formControlName="phone"
+            placeholder="{{'Phone' | translate}}"
+            required
+          />
+        </div>
+        <div class="form-group col-sm-6 col-12">
+          <label for="status">{{'Status' | translate}} <span>*</span></label>
+          <input
+            type="text"
+            formControlName="status"
+            placeholder="{{'Status' | translate}}"
+            required
+          />
+        </div>
+      </div>
+
+           
+
+    </form>
+  </div>
+  <div class="controls-btn d-flex" fxLayout="row" fxLayoutAlign="flex-end">
+    <div>
+      <button
+        color="mat-primary"
+        class="mat-primary cancel"
+        (click)="goToUsersListing()"
+      >
+        {{'Cancel' | translate}}
+      </button>
+    </div>
+    <div>
+      <!-- [disabled]="monthlyBudgetForm.invalid" -->
+      <button
+        [class.saving]="saving"
+        [ngClass]="newUserForm.invalid ? 'disabled' : ''"
+        color="primary"
+        class="mat-primary"
+        (click)="saveNewUser()"
+        type="submit"
+      >
+         {{'Save' | translate}}
+        <mat-spinner *ngIf="saving" diameter="15" class="btn-spinner">
+        </mat-spinner>
+      </button>
+    </div>
+  </div>
+</div>

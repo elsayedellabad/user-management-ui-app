@@ -1,0 +1,103 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12" style="text-align: start;">
+      <div class="search-box" >
+        <input
+          type="text"
+          placeholder="{{ 'Filter users data' | translate}}"
+          (keyup)="applySearchFilter()"
+          [(ngModel)]="filterUsers"
+        />
+        <span
+          *ngIf="filterUsers"
+          (click)="filterUsers = ''; applySearchFilter()"
+          class="material-icons"
+              >
+                clear
+              </span>
+      </div>
+      <a   *ngIf="token=='admin'" class="btn btn-primary new-user" (click)="openAddNewUser()"> {{'Add New User' | translate}}</a>
+    </div>
+  </div>
+  <div class="col-12" *ngIf="dataSource ">
+    <div class="row" style="overflow-x: auto;" >
+      <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8">
+
+          <!--- Note that these columns can be defined in any order.
+                The actual rendered columns are set as a property on the row definition" -->
+
+          <!-- Id Column -->
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef style="width: 10%" mat-sort-header="id"> {{'Id' | translate}}</th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef style="width: 10%" mat-sort-header="name">  {{'Name' | translate}}</th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+          </ng-container>
+
+          <!-- Email Column -->
+          <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef style="width: 20%" mat-sort-header="email"> {{'Email' | translate}} </th>
+            <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+          </ng-container>
+
+          <!-- Phone Column -->
+          <ng-container matColumnDef="phone">
+            <th mat-header-cell *matHeaderCellDef style="width: 20%" mat-sort-header="phone"> {{'Phone' | translate}} </th>
+            <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+          </ng-container>
+
+          <!-- Status Column -->
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef style="width: 10%" mat-sort-header="status"> {{'Status' | translate}} </th>
+            <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+          </ng-container>
+
+           <!-- Actions Column -->
+          <ng-container matColumnDef="actions" *ngIf="token=='admin'">
+            <th mat-header-cell *matHeaderCellDef style="width: 20%"> {{'Actions' | translate}} </th>
+            <td mat-cell *matCellDef="let element"> 
+                <button
+                  mat-icon-button
+                  color="primary"
+                  (click)="updateUser(element)"
+                  title="Update Product"
+                  style="margin-right: 20px;"
+                >
+                  {{'Update' | translate}}
+                </button>
+               <button
+                  mat-icon-button
+                  color="primary"
+                  (click)="deleteUser(element?.id)"
+                  title="Delete Product"
+                >
+                  {{'Delete' | translate}}
+                </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>
+
+    <mat-paginator
+      #paginator
+      [length]="length"
+      [pageSize]="pageSize"
+      [pageSizeOptions]="[5, 10, 25, 100]"
+      [pageIndex]="pageIndex"
+      [showFirstLastButtons]="true"
+      aria-label="Select page"
+      (page)="getServerData($event)"
+    >
+    </mat-paginator>
+  </div>
+  <div class="col-12 text-center no-search-results" *ngIf="dataSource && dataSource.data.length ==0 ">
+     {{'There is no users data' | translate}}
+  </div>
+</div>

@@ -1,0 +1,23 @@
+{
+  "app": "Users Management APP",
+  "Id": "Id",
+  "Name": "Name",
+  "Email": "Email",
+  "Phone": "Phone",
+  "Status": "Status",
+  "Actions": "Actions",
+  "Update": "Update",
+  "Delete": "Delete",
+  "There is no users data": "There is no users data",
+  "Login": "Login",
+  "Logout": "Logout",
+  "Password": "Password",
+  "Users Management APP": "Users Management APP",
+  "Cancel": "Cancel",
+  "Save": "Save",
+  "Add New User": "Add New User",
+  "Update User": "Update User",
+  "New User": "New User",
+  "Filter users data": "Filter users data"
+
+}

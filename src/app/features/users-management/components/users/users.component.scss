@@ -1,0 +1,54 @@
+a.btn {
+  margin-top: 20px;
+}
+
+table {
+  width: 100%;
+  margin-top: 20px;
+
+  th,
+  td {
+    padding: 15px;
+  }
+
+  th {
+    font-weight: bold;
+  }
+}
+
+div.col-12 {
+  text-align: start;
+}
+
+.search-box {
+    margin-top: 25px;
+    position: relative;
+    input {
+      width: 30%;
+      padding: 10px;
+      padding-left: 50px;
+    }
+
+    .icon {
+      position: absolute;
+      left: 25px;
+      top: 25%;
+      width: 10px;
+    }
+    .material-icons {
+      color: red;
+      cursor: pointer;
+      position: absolute;
+      left: 25%;
+      top: 7px;
+    }
+  }
+
+::ng-deep
+  .mat-sort-header-container:not(.mat-sort-header-sorted)
+  .mat-sort-header-arrow {
+  opacity: 0.54 !important;
+  transform: translateY(0px) !important;
+}
+
+
